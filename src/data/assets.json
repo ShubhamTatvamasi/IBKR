@@ -13,5 +13,21 @@
       { "label": "Vanguard Funds plc shareholder notice (registered office)", "url": "https://fund-docs.vanguard.com/Vanguard_Funds_Plc_Changes_to_ETF_Funds_April_2026_EN.pdf" }
     ],
     "verified": "2026-10-05"
+  },
+  {
+    "isin": "IE00BLRPPV00",
+    "symbols": ["VDST"],
+    "name": "Vanguard U.S. Treasury 0-1 Year Bond UCITS ETF (USD) Accumulating",
+    "issuer": "Vanguard Funds plc",
+    "nature": "ETF",
+    "country": "IE",
+    "address": "70 Sir John Rogerson's Quay, Dublin 2, Ireland",
+    "zip": "D02 R296",
+    "sources": [
+      { "label": "Vanguard product page (ISIN, domicile, exchanges)", "url": "https://www.vanguard.co.uk/professional/product/etf/bond/9933/us-treasury-0-1-year-bond-ucits-etf-usd-accumulating" },
+      { "label": "Vanguard factsheet (legal entity, ISIN, domicile)", "url": "https://fund-docs.vanguard.com/U.S._Treasury_0-1_Year_Bond_UCITS_ETF_USD_Accumulating_9933_EU_INT_UK_EN.pdf" },
+      { "label": "Vanguard Funds plc shareholder notice (registered office)", "url": "https://fund-docs.vanguard.com/Vanguard_Funds_Plc_Changes_to_ETF_Funds_April_2026_EN.pdf" }
+    ],
+    "verified": "2026-10-17"
   }
 ]

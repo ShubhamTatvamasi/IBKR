@@ -241,6 +241,9 @@ describe('address book', () => {
     expect(auto.name).toContain('Vanguard FTSE All-World');
     const own = entityFor('VWRA', 'IE00BK5BQT80', 'VANG FTSE AW USDA', { VWRA: { address: 'Elsewhere 1' } });
     expect(own).toMatchObject({ source: 'you', address: 'Elsewhere 1', zip: 'D02 R296' });
+    const bond = entityFor('VDST', 'IE00BLRPPV00', 'VANG US TREAS 0-1Y', {});
+    expect(bond).toMatchObject({ source: 'address book', zip: 'D02 R296', nature: 'ETF' });
+    expect(bond.name).toContain('U.S. Treasury 0-1 Year Bond');
     expect(entityFor('XYZ', 'US0000000000', 'XYZ CORP', {}).source).toBe('missing');
   });
 });
