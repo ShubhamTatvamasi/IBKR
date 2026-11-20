@@ -42,7 +42,7 @@ const pages = [
         </ul>
       </nav>
       <div class="dside-foot">
-        <div class="privacy-note"><Icon name="shield" size={18} /><span>The tool runs in your browser. Nothing is uploaded or stored.</span></div>
+        <div class="privacy-note"><Icon name="shield" size={18} /><span>The tool runs in your browser. Statements are never uploaded.</span></div>
         <div class="theme-switch" role="radiogroup" aria-label="Theme">
           {THEME_OPTIONS.map((o) => (
             <button role="radio" aria-checked="false" data-theme-set={o.value} title={`${o.label} theme`}><Icon name={o.icon} size={15} /><span>{o.label}</span></button>
@@ -59,7 +59,7 @@ const pages = [
         <a class="btn sm top-cta" href={base}>Open the tool<Icon name="arrow-right" size={16} /></a>
       </header>
       <div class="dbody">
-        <article class="doc">
+        <article class="doc" id="main" tabindex="-1">
           <slot />
           <footer class="doc-foot">
             <Icon name="info" size={16} />

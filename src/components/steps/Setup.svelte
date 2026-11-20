@@ -7,7 +7,9 @@
   import { BASE, date } from '../../lib/ui/format';
   import type { IsoDate } from '../../lib/dates';
 
-  const today = new Date().toISOString().slice(0, 10);
+  // Local calendar date: the filing deadlines are Indian dates, not UTC ones.
+  const now = new Date();
+  const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
   let dragging = $state(false);
   let input: HTMLInputElement;
   let yearEndInput: HTMLInputElement | undefined = $state();
@@ -129,7 +131,7 @@
 
 {#if !app.data}
   <section class="hero">
-    <span class="badge accent"><Icon name="shield" size={14} />Private by design · runs offline in your browser</span>
+    <span class="badge accent"><Icon name="shield" size={14} />Private by design · runs entirely in your browser</span>
     <h1>Your IBKR account, ready for the Indian tax return.</h1>
     <p class="lead">
       Schedule FA, capital gains, dividends and the foreign tax credit, worked out lot by lot with SBI TT buying rates and laid out
@@ -452,7 +454,9 @@
   .yc-top { display: flex; justify-content: space-between; align-items: center; color: var(--accent); }
   .yc-top b { color: var(--text); }
   .yc-sub { font-size: 13px; color: var(--text-2); }
-  .year-card .badge { justify-self: start; margin-top: 6px; }
+  /* Deadline text can be long ("Belated until … · revised until …"): let it wrap inside the card. */
+  .year-card .badge { justify-self: start; margin-top: 6px; white-space: normal; height: auto; min-height: 22px; padding: 3px 8px; line-height: 1.35; text-align: left; }
+  .card-head .link-btn { flex: none; white-space: nowrap; }
 
   .runs { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
   .run { display: flex; gap: 12px; padding: 14px 16px; background: var(--surface-sunken); border-radius: var(--r-md); }

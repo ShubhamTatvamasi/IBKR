@@ -20,7 +20,7 @@ const rates = [
   { what: 'Schedule FA · initial value', when: 'The acquisition date' },
   { what: 'Schedule FA · peak value', when: 'Every day of the year — the peak of the rupee series' },
   { what: 'Schedule FA · closing value', when: '31 December' },
-  { what: 'Schedule FA · income and proceeds', when: 'Each transaction date', note: 'Setting: 31 December' },
+  { what: 'Schedule FA · income and proceeds', when: '31 December', note: 'Setting: each transaction date' },
 ];
 ---
 <Docs title="How It's Calculated · IBKR India Tax" description="Rules and conventions behind every Schedule FA, CG, OS and foreign tax credit figure." crumb="How it's calculated" toc={toc}>
@@ -90,7 +90,7 @@ const rates = [
   <section id="cg">
     <h2><span class="h-icon"><Icon name="trend" size={18} /></span>Capital gains</h2>
     <div class="rule-list">
-      <div class="rule"><Icon name="check-circle" /><div><b>IBKR's own lot matching</b><p>Each sale uses the lot IBKR actually closed (its closed-lot records), not a re-guessed FIFO.</p></div></div>
+      <div class="rule"><Icon name="check-circle" /><div><b>First in, first out by default</b><p>For identical shares, CBDT circulars and case law apply FIFO, so sales are re-matched to the oldest lots even when IBKR used another method. Switch to IBKR's own matching under Method choices if you identified the lot at the time of sale.</p></div></div>
       <div class="rule"><Icon name="clock" /><div><b>Unlisted in India</b><p>Long-term only if held more than 24 months (36 months for sales before 23 July 2024), taxed at 12.5% without indexation. Short-term at slab rates. No section 112A exemption.</p></div></div>
       <div class="rule"><Icon name="receipt" /><div><b>Commissions</b><p>Purchase commission is part of cost; sale commission is expenditure on transfer.</p></div></div>
       <div class="rule"><Icon name="calendar" /><div><b>Where it goes</b><p>Short-term in A5, long-term in B8. Table F splits gains by sale date into the five advance-tax periods, never negative — losses are absorbed by later gains in the same category.</p></div></div>
@@ -118,6 +118,7 @@ const rates = [
     <h2><span class="h-icon"><Icon name="exchange" size={18} /></span>Choices you control</h2>
     <p class="sec-lead">Pick one in the Review step, note it for your CA and use it every year.</p>
     <div class="choice-grid">
+      <div class="choice-card"><b>Lot matching</b><ul><li>First-in, first-out <span class="default">default</span></li><li>As IBKR matched the sale</li></ul></div>
       <div class="choice-card"><b>Capital gains conversion</b><ul><li>Dollar gain converted once at the sale-month rate <span class="default">default</span></li><li>Sale and cost converted separately</li></ul></div>
       <div class="choice-card"><b>Schedule FA income rate</b><ul><li>31 December <span class="default">default</span></li><li>Each transaction date</li></ul></div>
       <div class="choice-card"><b>Broker interest rate</b><ul><li>31 March <span class="default">default</span></li><li>Month-end before each credit</li></ul></div>

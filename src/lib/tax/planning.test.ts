@@ -4,7 +4,6 @@ import type { Report } from './engine';
 import { advanceTax, compareRegimes, harvestIdeas } from './planning';
 
 const d = (n: number) => new Decimal(n);
-const zeros = () => [0, 0, 0, 0, 0].map(d);
 function stub(over: { stcg?: number; ltcg?: number; dividends?: number[]; relief?: number; holdings?: { gain: number; lt: boolean }[]; tableF?: { stcg: number[]; ltcg: number[] } } = {}): Report {
   const divQ = (over.dividends ?? [0, 0, 0, 0, 0]).map(d);
   return {

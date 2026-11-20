@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /IBKR/
+Disallow: /IBKR/samples/
+
+Sitemap: https://shubhamtatvamasi.com/IBKR/sitemap.xml

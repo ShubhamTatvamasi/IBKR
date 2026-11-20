@@ -42,6 +42,15 @@
 
   const prev = $derived(index > 0 ? STEPS[index - 1] : undefined);
   const next = $derived(index < STEPS.length - 1 ? STEPS[index + 1] : undefined);
+
+  // Keep the tab title and the live region in step with hash navigation.
+  $effect(() => {
+    if (typeof document === 'undefined') return;
+    const label = current === 'file' ? (SCHEDULES.find((s) => s.id === app.schedule)?.label ?? 'File your return') : STEPS[index].label;
+    document.title = `${label} · IBKR India Tax`;
+    const live = document.getElementById('live-region');
+    if (live) live.textContent = `Step ${index + 1} of ${STEPS.length}: ${label}`;
+  });
 </script>
 
 <div id="live-region" class="sr-only" role="status" aria-live="polite"></div>
@@ -93,7 +102,7 @@
     </nav>
 
     <div class="side-foot">
-      <div class="privacy"><Icon name="shield" size={18} /><span>Processed in your browser. Nothing is uploaded or stored.</span></div>
+      <div class="privacy"><Icon name="shield" size={18} /><span>Statements stay in this tab. Nothing is uploaded.</span></div>
       <div class="foot-links">
         <a href={`${BASE}guide/`}><Icon name="book" size={16} /> Flex Query guide</a>
         <a href={`${BASE}method/`}><Icon name="info" size={16} /> How it's calculated</a>
@@ -119,7 +128,7 @@
     </header>
     <div class="progress" aria-hidden="true"><span style:width={`${((index + 1) / STEPS.length) * 100}%`}></span></div>
 
-    <main class="content">
+    <main class="content" id="main" tabindex="-1">
       {#if current === 'setup'}
         <Setup />
       {:else if current === 'review'}

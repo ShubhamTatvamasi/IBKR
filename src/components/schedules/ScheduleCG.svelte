@@ -83,7 +83,7 @@
   <div class="table-caption">
     <div>
       <h3>Working — every sold lot</h3>
-      <p>Matched to the exact lot IBKR closed. Expand a row to see the rates and dates.</p>
+      <p>{r.settings.lotMatching === 'ibkr' ? 'Matched to the exact lot IBKR closed.' : 'Sales re-matched first-in, first-out — the Indian practice for identical shares.'} Expand a row to see the rates and dates.</p>
     </div>
     <span class="badge">{r.settings.cgFxMethod === 'split' ? 'Sale and cost converted separately' : 'Gain converted at sale-month rate'}</span>
   </div>

@@ -156,16 +156,28 @@ class AppState {
   }
 
   async loadSample() {
-    const names = ['sample-cy2025.xml', 'sample-fy2025-26.xml'];
-    const files = await Promise.all(
-      names.map(async (name) => {
-        const text = await (await fetch(`${BASE}samples/${name}`)).text();
-        return { name, size: text.length, text };
-      }),
-    );
-    this.isSample = true;
-    this.ay = 2026;
-    await this.ingest(files);
+    if (this.busy) return;
+    this.busy = true;
+    this.loadError = '';
+    try {
+      const names = ['sample-cy2025.xml', 'sample-fy2025-26.xml'];
+      const files = await Promise.all(
+        names.map(async (name) => {
+          const res = await fetch(`${BASE}samples/${name}`);
+          if (!res.ok) throw new Error(`Couldn't load the sample file (${res.status}). Check your connection and try again, or upload your own files.`);
+          const text = await res.text();
+          return { name, size: text.length, text };
+        }),
+      );
+      this.isSample = true;
+      this.ay = 2026;
+      await this.ingest(files);
+    } catch (e) {
+      this.isSample = false;
+      this.loadError = (e as Error).message;
+    } finally {
+      this.busy = false;
+    }
   }
 
   clear() {

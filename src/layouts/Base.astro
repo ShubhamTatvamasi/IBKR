@@ -10,13 +10,23 @@ const {
   description = 'Private, in-browser Indian tax reports (Schedule FA, CG, OS, FSI/TR, Form 67) from Interactive Brokers statements.',
 } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url).href;
 ---
 <!doctype html>
-<html lang="en">
+<html lang="en-IN">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="IBKR India Tax" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
     <meta name="theme-color" content="#0e1a2b" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0a121e" media="(prefers-color-scheme: dark)" />
     {/* Only same-origin network access: statements cannot be sent anywhere. Off in dev (HMR websocket). */}
@@ -33,6 +43,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
     </script>
   </head>
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <slot />
   </body>
 </html>
